@@ -1,0 +1,29 @@
+<%- include('header') %>
+
+<div class="box" id="heading">
+  <h1><%= listName %></h1>
+</div>
+
+<div class="box">
+  <% items.forEach(function (element) { %>
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="hidden" name="list" value="<%= listName %>">
+        <input type="checkbox" name="checkbox" value="<%= element._id %>" onchange="this.form.submit()"/>
+        <p><%= element.name %></p>
+      </div>
+    </form>
+  <% }) %>
+
+  <form class="item col-flex-dir" action="/" method="post">
+    <input
+      type="text"
+      placeholder="Enter activity here."
+      name="newActivity"
+      autocomplete="off"
+    />
+    <button class="button" type="submit" name="list" value="<%= listName %>">Add To List</button>
+  </form>
+</div>
+
+<%- include('footer') %>
